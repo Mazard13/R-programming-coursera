@@ -25,7 +25,7 @@ pollutantmean <- function(directory, pollutant , id = 1:332){
   #dataset created - complete file with all IDs not containing NA values
   
   #bringin in pollutants
-  if (pollutant == "sulphate"){
+  if (pollutant == "sulfate"){
     x <- 2 
   }
   if (pollutant == "nitrate"){
@@ -37,6 +37,6 @@ pollutantmean <- function(directory, pollutant , id = 1:332){
   id_max<-max(id)
   data_ID <- subset(dataset,dataset$ID >= id_min & dataset$ID <= id_max)
   
-  return(mean(data_ID[,x]))
+  mean(data_ID[,x])
 }
 
