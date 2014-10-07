@@ -3,6 +3,8 @@ pollutantmean <- function(directory, pollutant , id = 1:332){
   setwd(directory)
   #merge all files to form one
   file_list <- list.files()
+    
+  i<-1
   
   #merging files into dataset
   for(file in file_list){ 
@@ -10,20 +12,16 @@ pollutantmean <- function(directory, pollutant , id = 1:332){
     #temporarily storing files
     temp_data <- read.csv(file)
     
-    clean_data <- temp_data[complete.cases(temp_data)]
+    clean_data <- temp_data[complete.cases(temp_data),]
     
-    #if merged data exists
-    if(exists("dataset")){
-      dataset <- rbind(dataset,clean_data)
+    if(i==1){
+      dataset<-clean_data
     }
-    
-    #if merged data doesn't exist
-    if (!exists("dataset")){
-      dataset <- clean_data
-      }
-    rm(temp_data)
-    rm(clean_data)
+    else{
+      dataset<-rbind(dataset,clean_data)
+    }
+  i<-i+1
   }
-  write.csv(dataset,"final.csv")
+  return(dataset)
 }
 
