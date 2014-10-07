@@ -33,7 +33,10 @@ pollutantmean <- function(directory, pollutant , id = 1:332){
   }
   
   #Using ID
-  data_ID <- subset(dataset,dataset$ID == id)
+  id_min<-min(id)
+  id_max<-max(id)
+  data_ID <- subset(dataset,dataset$ID >= id_min & dataset$ID <= id_max)
+  
   return(mean(data_ID[,x]))
 }
 
