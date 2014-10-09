@@ -8,13 +8,14 @@ complete <- function(directory, id = 1:332){
   
   for (file in file_list){
     temp_data <- read.csv(file)
-    for (y in id){
+    
+    for (y in id){ #taking all id IN INCREASING ORDER!(warning)
+      
       if (temp_data[2,4] == y){
         clean_data <- temp_data[complete.cases(temp_data),] #removing all NAs
-        #2 is irrelevant . just capturing value in column 4
-        wanted_data <- c(clean_data[2,4],sum(clean_data[,4]==clean_data[2,4]))
+        wanted_data <- c(y,sum(clean_data[,4]== y ))  # creating vectors of id and sum(id)
     
-        if (i==1 & clean_data[2,4]==y){
+        if (i==1){
           dataset <- wanted_data
           i<-i+1
         }  
@@ -25,15 +26,9 @@ complete <- function(directory, id = 1:332){
     }
   }
     
-  frame<-data.frame(dataset[,1:2])
+  frame<-data.frame(id = dataset[,1],nobs = dataset[,2])
   
-  #using ID constraints
-  #id_min<-min(id)
-  #id_max<-max(id)
-  
-  #final_complete <- subset(frame,frame$X1 >= id_min & frame$X1 <= id_max)
-  
-  frame
+ frame
 }
     
     
