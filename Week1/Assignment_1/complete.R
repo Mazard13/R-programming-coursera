@@ -1,10 +1,10 @@
 complete <- function(directory, id = 1:332){
   
-  setwd(directory)
+  setwd(directory) # settting working directory
   
-  file_list <- list.files()
+  file_list <- list.files() # creating a vector of files in directory
   
-  i<- 1
+  i <- 1
   
   for (file in file_list){
     temp_data <- read.csv(file)
@@ -19,16 +19,17 @@ complete <- function(directory, id = 1:332){
           dataset <- wanted_data
           i<-i+1
         }  
-        else{
+        if(i>1){
           dataset<-rbind(dataset,wanted_data)
         }
       }
     }
   }
-    
   frame<-data.frame(id = dataset[,1],nobs = dataset[,2])
   
  frame
 }
+
+
     
     
