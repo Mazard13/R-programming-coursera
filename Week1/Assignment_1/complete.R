@@ -16,11 +16,13 @@ complete <- function(directory, id = 1:332){
     
         if(i>1){
           dataset<-rbind(dataset,wanted_data)
+          break
         }
-        if (i==1){#if this condition was placed earlier , output would have the 2  initial rows as same
+        if (i==1){#if this condition was placed earlier , output would have the initial 2 rows as same
           dataset <- wanted_data
           i<-i+1
-        }        
+          break
+        }  
       }
     }
   }
